@@ -1,3 +1,4 @@
+require("./utils/db.js") // yaha require hone ke baad he .then database conected ka meg aayega console me 
 const express = require('express');
 const app = express();
 
