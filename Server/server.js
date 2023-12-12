@@ -4,7 +4,7 @@ const app = express();
 //data post kia registration ke liye toh data dikha nhi response me so solution we need to use middleware
 //middleware & ye beginning me he hona chahiye warna kaam nhi karega ..
 app.use(express.json());
-// matlab express ko help karo json data read karne me
+// matlab express ko help karo json data read karne me // {req.body} me jo data aata hai woh read karne me
 
 
 // importing auth-router.js file module
