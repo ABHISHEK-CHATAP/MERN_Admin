@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 
-// importing the home controller
-const {Home} = require("../controllers/auth-controller")
+// importing the Registration controller
+const {Registration} = require("../controllers/auth-controller")
 
 
 router.get("/", function (req, res) {
@@ -20,15 +20,10 @@ router.get("/", function (req, res) {
 
 //OR    
 
-// router.route("/register").get(Home)
+// router.route("/register").get(Registration)
 // --------------------------------------------------------------------------------------
 
-router.route("/register").post(Home)
-
-
-
-
-
+router.route("/register").post(Registration)
 
 
 

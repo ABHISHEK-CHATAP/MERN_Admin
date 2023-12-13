@@ -1,3 +1,6 @@
+require("dotenv").config()
+const PORT = process.env.PORT || 3000;
+
 require("./utils/db.js") // yaha require hone ke baad he .then database conected ka meg aayega console me 
 const express = require('express');
 const app = express();
@@ -18,6 +21,6 @@ app.use("/api/auth", router);
 // app.get('/', function(req, res){
 // res.status(200).send('Welcome to the Backend');
 // });
-app.listen(3000, ()=>{
+app.listen(PORT, ()=>{
     console.log("server is running on port 3000...");
 });
