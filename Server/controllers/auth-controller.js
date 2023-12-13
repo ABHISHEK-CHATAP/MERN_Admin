@@ -3,6 +3,7 @@
 // They help organize your application by separating concerns and following the MVC (Model view Controller) design pattern.
 
 const User = require("../models/user-model");
+// const bcrypt = require('bcryptjs');
 
 const Registration = async (req, res) => {
   try {
@@ -15,15 +16,15 @@ const Registration = async (req, res) => {
     if (userExist) {
       return res.status(400).json({ message: "User/email already exists" });
     }
-      // if not , then create and store
-    const registerData = await User.create({ username, email, phone, password });
+     //hash the password
+    //  const saltRound = 10;
+    //  const hash_password =await bcrypt.hash( password, saltRound )
+    //(ye above 2 lines {{pre method}}) me use kia hai [schema ke niche & model k uper]
 
-    res
-      .status(201)
-      .json({
-        message: "USer data created on register page...",
-        data: registerData,
-      });
+      // if not , then create and store
+    const registerData = await User.create({ username, email, phone, password  });
+
+    res.status(201).json({message: "USer data created on register page...",data: registerData});
   } catch (error) {
     res.status(500).json({ message: "internal server error" });
   }
