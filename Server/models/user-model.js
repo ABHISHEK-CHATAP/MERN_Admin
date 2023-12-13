@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const jwt = require("jsonwebtoken");
+
+require("dotenv").config();
+const SECRET_KEY = process.env.JWT_SECRET_KEY
 
 const userSchema = new mongoose.Schema({
     username : {
@@ -42,6 +46,21 @@ userSchema.pre("save", async function(next){
   }
 
 });
+
+// json web token
+userSchema.methods.generateToken = async function(){
+  try {
+    return jwt.sign({
+        userId : this._id.toString(),
+        email : this._email,
+        isAdmin : this.isAdmin,
+    },SECRET_KEY, {expiresIn : "1d"})
+    
+  } catch (error) {
+    console.log(error)
+  }
+
+}
 
 
 // define the model or collection name 

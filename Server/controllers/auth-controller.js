@@ -11,20 +11,30 @@ const Registration = async (req, res) => {
     //get the data using req.body
     const { username, email, phone, password } = req.body;
     // check the email exist or not
-    const userExist =await User.findOne({ email: email });
+    const userExist = await User.findOne({ email: email });
     // if exist then show error
     if (userExist) {
       return res.status(400).json({ message: "User/email already exists" });
     }
-     //hash the password
+    //hash the password
     //  const saltRound = 10;
     //  const hash_password =await bcrypt.hash( password, saltRound )
-    //(ye above 2 lines {{pre method}}) me use kia hai [schema ke niche & model k uper]
+    //(ye above 2 lines {{pre method}}) me use kia hai [ schema ke niche & model k uper ]
 
-      // if not , then create and store
-    const registerData = await User.create({ username, email, phone, password  });
+    // if not , then create and store
+    const registerData = await User.create({
+      username,
+      email,
+      phone,
+      password,
+    });
 
-    res.status(201).json({message: "USer data created on register page...",data: registerData});
+    res.status(201).json({
+        message: "USer data created on register page...",
+        data: registerData,
+        token: await registerData.generateToken(),
+        userId : registerData._id.toString(),
+      });
   } catch (error) {
     res.status(500).json({ message: "internal server error" });
   }
