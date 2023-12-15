@@ -64,11 +64,16 @@ const Login = async (req, res) => {
     } else {
       res.status(401).json({ msg: "Invalid email or password" });
     }
-    
+
   } catch (error) {
     res.status(500).json({ message: "internal login error" });
   }
 };
+
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 
 module.exports = { Registration, Login };
 // agar yaha export currly bracket me kia hai toh import bhi currly bracket me he karna hoga  {{vice-versa}}

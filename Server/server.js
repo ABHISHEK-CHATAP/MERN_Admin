@@ -13,8 +13,10 @@ app.use(express.json());
 
 
 // importing auth-router.js file module
-const router = require("./router/auth-router.js") 
-app.use("/api/auth", router);
+const authRoute = require("./router/auth-router.js") 
+const contactRoute = require("./router/contact-router.js")
+app.use("/api/auth", authRoute);
+app.use("/api/form", contactRoute);
 
 
 
