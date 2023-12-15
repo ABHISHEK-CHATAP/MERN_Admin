@@ -44,10 +44,14 @@ userSchema.pre("save", async function(next){
   } catch (error) {
     next(error);
   }
-
 });
 
-// json web token
+// Compare the password for login function
+userSchema.methods.comparePassword = async function(password){
+    return  bcrypt.compare( password, this.password);
+}
+
+// Json web token
 userSchema.methods.generateToken = async function(){
   try {
     return jwt.sign({

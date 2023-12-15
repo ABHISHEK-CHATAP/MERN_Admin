@@ -3,7 +3,7 @@
 // They help organize your application by separating concerns and following the MVC (Model view Controller) design pattern.
 
 const User = require("../models/user-model");
-// const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs");
 
 const Registration = async (req, res) => {
   try {
@@ -30,15 +30,45 @@ const Registration = async (req, res) => {
     });
 
     res.status(201).json({
-        message: "USer data created on register page...",
-        data: registerData,
-        token: await registerData.generateToken(),
-        userId : registerData._id.toString(),
-      });
+      message: "USer data created on register page...",
+      data: registerData,
+      token: await registerData.generateToken(),
+      userId: registerData._id.toString(),
+    });
   } catch (error) {
     res.status(500).json({ message: "internal server error" });
   }
 };
 
-module.exports = { Registration };
+// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+const Login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const DbUserExists = await User.findOne({ email });
+    // console.log("login data exists", DbUserExists);
+    if (!DbUserExists) {
+      res.status(400).json({ msg: "Invalid Credentials" });
+    }
+    //login me email toh find kr liya jo DB me hai ab password bhi compare karna hoga
+
+    // const isPasswordValid = await bcrypt.compare( password,DbUserExists.password);
+    const isPasswordValid = await DbUserExists.comparePassword( password ); // above commented code also can be written as with help of function method
+
+    if (isPasswordValid) {
+      res.status(200).json({
+        msg: "login successful",
+        token: await DbUserExists.generateToken(),
+        userId: DbUserExists._id.toString(),
+      });
+    } else {
+      res.status(401).json({ msg: "Invalid email or password" });
+    }
+    
+  } catch (error) {
+    res.status(500).json({ message: "internal login error" });
+  }
+};
+
+module.exports = { Registration, Login };
 // agar yaha export currly bracket me kia hai toh import bhi currly bracket me he karna hoga  {{vice-versa}}
