@@ -1,0 +1,18 @@
+header{
+background-color: aqua;
+}
+.container{
+    max-width: 140rem;
+    background-color: wheat;
+    padding: 1rem 2.4rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+ul{
+    display: flex;
+    gap: 3.2rem;
+}
+ul li{
+    list-style: none;
+}
