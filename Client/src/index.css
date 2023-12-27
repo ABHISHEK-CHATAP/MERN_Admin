@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color-scheme: light dark;
+  /* color-scheme: light dark; */
 }
 
 :root{
@@ -17,4 +17,30 @@ p,li,label,input, textarea {
   line-height: 1.56;
   letter-spacing: 0.1rem;
   word-spacing: 0.06rem;
+}
+.login-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 1px;
+
+}
+.Contact-div{
+  display: flex;
+  flex-direction: column;
+}
+.btn{
+  color: #f4f3ff;
+  background-color: #646cff;
+  outline: none !important;
+  border: none;
+  padding: 6px 15px;
+  font-size: larger;
+  font-weight: 500;
+  border-radius: 23px;
+}
+.btn:hover{
+  background-color: #f4f3ff;
+  color: black !important;
+  border: 1px solid black !important;
 }

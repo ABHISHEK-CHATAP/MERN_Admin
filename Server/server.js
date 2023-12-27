@@ -1,11 +1,19 @@
 require("dotenv").config()
 const PORT = process.env.PORT || 3000;
+const cors = require("cors");
 
 require("./utils/db.js") // yaha require hone ke baad he .then database conected ka meg aayega console me 
 
 const express = require('express');
 const app = express();
 
+
+const corsOptions = {
+    origin:"http://localhost:5173",
+    methods : "GET, POST, PUT, DELETE, PATCH, HEAD",
+    credentials : true,
+}
+app.use(cors(corsOptions));
 //data post kia registration ke liye toh data dikha nhi response me so solution we need to use middleware
 //middleware & ye beginning me he hona chahiye warna kaam nhi karega ..
 app.use(express.json());
@@ -15,9 +23,10 @@ app.use(express.json());
 // importing auth-router.js file module
 const authRoute = require("./router/auth-router.js") 
 const contactRoute = require("./router/contact-router.js")
+const serviceRoute = require("./router/service-router.js")
 app.use("/api/auth", authRoute);
 app.use("/api/form", contactRoute);
-
+app.use("/api/data", serviceRoute);
 
 
 

@@ -72,8 +72,19 @@ const Login = async (req, res) => {
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+// To send USer Data -- VAlidUSer logic 
+
+const ValidUser = async(req, res) => {
+try {
+  const userData = req.user;
+  console.log("userdata:",userData);
+
+  return res.status(200).json({ userData});
+} catch (error) {
+  console.log("error from user Route :", error);
+}
+}
 
 
-
-module.exports = { Registration, Login };
+module.exports = { Registration, Login , ValidUser};
 // agar yaha export currly bracket me kia hai toh import bhi currly bracket me he karna hoga  {{vice-versa}}

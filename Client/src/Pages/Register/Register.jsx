@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-
+const navigate = useNavigate();
      const [user, setUser] = useState({
         username : "",
         email:"",
@@ -16,10 +17,42 @@ const Register = () => {
         setUser({ ...user, [name]:value })
       }
 
-       const handleSubmit=(e)=>{
+       const handleSubmit = async(e)=>{
         e.preventDefault();
-        console.log("register data", user)
+        // console.log("register data", user)
+
+      try {
+        const response = await fetch("http://localhost:3000/api/auth/register", {
+          method: "POST",
+          headers:{
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        })
+           
+         if(response.ok === true) {
+           const res_data = response.json();
+           console.log("res-data",res_data);
+
+          //  har jagah localStorage.setItem("token", res_data.token); nahi likh sakte isliye function me token pass kia 
+           storeTokenInLocalStorage(res_data);
+
+          setUser({
+            username : "",
+            email:"",
+            phone:"",
+            password: "",
+         });
+           navigate("/login");
+         }
+       console.log("data submitted :", response)
+        
+      } catch (error) {
+        console.log("register error :", error)
+      }
+
        }
+
   return (
     <>
       <section>
@@ -40,19 +73,19 @@ const Register = () => {
                 <br/>
 
                 <form onSubmit={handleSubmit}>
-                    <div>
+                    <div className='login-form'>
                         <label htmlFor="username">Username</label>
                         <input type="text" name="username" value={user.username} onChange={handleInput} placeholder="username" id="username" required autoComplete="off" />
                     </div>
-                    <div>
+                    <div className='login-form'>
                         <label htmlFor="email">email</label>
                         <input type="text" name="email" value={user.email} onChange={handleInput} placeholder="email" id="email" required autoComplete="off" />
                     </div>
-                    <div>
+                    <div className='login-form'>
                         <label htmlFor="phone">phone</label>
                         <input type="number" name="phone" value={user.phone} onChange={handleInput} placeholder="phone" id="phone" required autoComplete="off" />
                     </div>
-                    <div>
+                    <div className='login-form'>
                         <label htmlFor="password">password</label>
                         <input type="password" name="password" value={user.password} onChange={handleInput} placeholder="password" id="password" required autoComplete="off" />
                     </div>

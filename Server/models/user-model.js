@@ -56,10 +56,14 @@ userSchema.methods.generateToken = async function(){
   try {
     return jwt.sign({
         userId : this._id.toString(),
-        email : this._email,
+        email : this.email,
         isAdmin : this.isAdmin,
     },SECRET_KEY, {expiresIn : "1d"})
     
+    //while generating a token
+    // jwt.sign(payload, SECRET_KEY, EXPIRES_IN)
+    // and ye payload verify karte time milega
+
   } catch (error) {
     console.log(error)
   }

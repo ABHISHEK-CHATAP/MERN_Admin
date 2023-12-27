@@ -3,7 +3,8 @@ const router = express.Router();
 
 
 // importing the Registration controller
-const {Registration, Login} = require("../controllers/auth-controller")
+const {Registration, Login, ValidUser} = require("../controllers/auth-controller")
+const authMiddleware = require("../middlewares/auth-middleware")
 
 // Zod validation in user registration
 // const signupSchema = require("../validatorsZod/auth-validator.js")
@@ -28,8 +29,8 @@ router.get("/", function (req, res) {
 
 router.route("/register").post(Registration)
 router.route("/login").post(Login)
-
-
+router.route("/user").get(authMiddleware, ValidUser)
+// authmiddleware ===> to check bande ne token apne pass rakha hai ya nhi ===> user loggin hai ya nhi ===> to verify user
 
 
 

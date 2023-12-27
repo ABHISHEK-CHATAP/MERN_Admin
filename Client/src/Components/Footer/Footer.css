@@ -1,0 +1,9 @@
+footer{
+background-color: rgb(219, 226, 232);
+padding: 20px;
+}
+
+.footer-div{
+    display: flex;
+    justify-content: center;
+}
