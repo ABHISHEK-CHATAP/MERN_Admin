@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Store/AuthProvider';
+//toast 
+import {  toast } from 'react-toastify';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -40,14 +42,36 @@ const Login = () => {
 
             storeTokenInLocalStorage(res_data.token)
 
-            navigate("/");
-            alert("Login successful")
+            // alert("Login successful")
+            toast.success('Login Successfull', {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: false,
+              progress: undefined,
+              theme: "colored",
+              });
+              
+              navigate("/");
+
             setUser({
               email:"",
               password: "",
            });
            }else{
-            alert("Login failed Invalid credentials");
+            // alert("Login failed Invalid credentials");
+            toast.error('Login failed Invalid credentials', {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: false,
+              progress: undefined,
+              theme: "colored",
+              });
            }
          console.log("login frontend  :", response)
           
@@ -91,6 +115,7 @@ const Login = () => {
                     </div>
                     <br/>
                     <button type="submit" className="btn btn-submit">Login</button>
+                   
                 </form>
               </div>
             </div>

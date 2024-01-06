@@ -11,8 +11,6 @@ const authMiddleware = require("../middlewares/auth-middleware")
 // const Validate = require("../middlewares/validate-middleware.js")
 
 
-
-
 router.get("/", function (req, res) {
   res.status(200).send("this in mine router route..");
 });
@@ -31,9 +29,6 @@ router.route("/register").post(Registration)
 router.route("/login").post(Login)
 router.route("/user").get(authMiddleware, ValidUser)
 // authmiddleware ===> to check bande ne token apne pass rakha hai ya nhi ===> user loggin hai ya nhi ===> to verify user
-
-
-
 
 
 

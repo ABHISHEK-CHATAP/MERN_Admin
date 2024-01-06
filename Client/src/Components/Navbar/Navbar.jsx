@@ -19,6 +19,11 @@ const Navbar = () => {
           {/* right side  */}
           <nav>
             <ul>
+            <li>
+                <NavLink to="/admin" className="links">
+                  Admin
+                </NavLink>
+               </li>
               <li>
                 <NavLink to="/" className="links">
                   Home

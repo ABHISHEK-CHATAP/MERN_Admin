@@ -9,6 +9,7 @@ const About = () => {
 
   return (
    <>
+   <div className="container" style={{height:590}}>
    <h4>About page</h4>
 
    <br/>
@@ -23,7 +24,7 @@ const About = () => {
    <br/>
    <br/> 
    
-   
+   </div>
    </>
   )
 }

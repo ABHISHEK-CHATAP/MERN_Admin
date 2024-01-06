@@ -34,15 +34,15 @@ const navigate = useNavigate();
            const res_data = response.json();
            console.log("res-data",res_data);
 
-          //  har jagah localStorage.setItem("token", res_data.token); nahi likh sakte isliye function me token pass kia 
-           storeTokenInLocalStorage(res_data);
-
+          // //  har jagah localStorage.setItem("token", res_data.token); nahi likh sakte isliye function me token pass kia 
+          //  storeTokenInLocalStorage(res_data);
           setUser({
             username : "",
             email:"",
             phone:"",
             password: "",
          });
+         
            navigate("/login");
          }
        console.log("data submitted :", response)

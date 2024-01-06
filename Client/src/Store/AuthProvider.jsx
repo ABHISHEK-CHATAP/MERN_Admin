@@ -9,6 +9,9 @@ export const AuthProvider = ({children}) => {
 //need to create state variable to store token any use that token easily in form of variable
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [activeUser, setActiveUser] = useState("");
+    const [serviceData, setServiceData] = useState("");
+    const authorization = `Bearer ${token}` ;
+
 
     const storeTokenInLocalStorage = (serverToken) => {
         setToken(serverToken)
@@ -31,7 +34,7 @@ export const AuthProvider = ({children}) => {
             const response = await fetch("http://localhost:3000/api/auth/user",{
                 method : "GET",
                 headers :{
-                    Authorization : `Bearer ${token}`,
+                    Authorization : authorization,
                 }
             })
            if(response.ok == true){
@@ -45,7 +48,25 @@ export const AuthProvider = ({children}) => {
         }
      }
 
+
+     //Get Services Data from the database
+     const getServices=async()=>{
+        try {
+            const response = await fetch("http://localhost:3000/api/data/service")
+        
+            if(response.ok){
+                const data =await response.json();
+                console.log("service data :", data)
+                setServiceData(data);
+            }
+
+        } catch (error) {
+          console.log("services error",error);  
+        }
+     }
+
      useEffect(()=>{
+        getServices();
         userAuthentication();
      },[])
 
@@ -53,7 +74,7 @@ export const AuthProvider = ({children}) => {
   return (
     <>
     
-    <AuthContext.Provider value={{storeTokenInLocalStorage, LogOutUser, isLoggedIn, activeUser}}>
+    <AuthContext.Provider value={{storeTokenInLocalStorage, LogOutUser, isLoggedIn, activeUser, serviceData, authorization}}>
         {children}
     </AuthContext.Provider>
     

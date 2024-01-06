@@ -12,6 +12,7 @@ res.status(400).json({msg : "No Service found"})
 }
 
 res.status(201).json({data: response})
+
 } catch (error) {
     res.status(500).json({ message: `error from server ${error}` });
 }

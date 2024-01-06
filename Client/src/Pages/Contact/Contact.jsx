@@ -59,7 +59,7 @@ const Contact = () => {
 
   return (
     <>
-      <Grid container spacing={2} p={5}>
+      <Grid container spacing={2} p={5}className="container" height={600}>
         <Grid item xs={6  } >
          <h2>Contact Form</h2>
         </Grid>
