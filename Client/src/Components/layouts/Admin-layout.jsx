@@ -1,8 +1,16 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Navigate, Outlet } from "react-router-dom";
 import "./Admin-layout.css"
+import { useAuth } from "../../Store/AuthProvider";
 
 const AdminLayout = () => {
+  const {activeUser} = useAuth();
+console.log("Admin layout :", activeUser);
+
+if(!activeUser.isAdmin){
+  return <Navigate to="/" />;
+}
+
   return (
     <>
       <ul>

@@ -16,7 +16,7 @@ p,li,label,input, textarea {
   font-size: 1.2rem;
   line-height: 1.56;
   letter-spacing: 0.1rem;
-  word-spacing: 0.06rem;
+  word-spacing: 0.1rem;
 }
 .login-form{
   display: flex;

@@ -19,7 +19,7 @@ const Service = () => {
               const {price, description, provider, service} = curEle;
                return(
              <>
-             <div className="card" style={{padding:18, border:"2px solid gray", borderRadius:10,width:300}} key={index}>
+             <div className="card" style={{padding:15, border:"2px solid gray", borderRadius:10,width:300}} key={index}>
                  <div className="card-image">
                    <img
                      src="https://png.pngtree.com/png-vector/20190613/ourmid/pngtree-web-development-illustration-modern-can-be-used-for-landing-pages-web-png-image_1496223.jpg"
